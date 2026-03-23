@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AOS | Totum Deterministic Truth</title>
-    <!-- SCRIPT CRISP INTEGRATO - NON TOCCARE -->
+    <!-- SCRIPT CRISP INTEGRATO O(1) -->
     <script type="text/javascript">
         window.$crisp=[];window.CRISP_WEBSITE_ID="d1a70b76-e109-4314-a8e4-c8c470711ec7";
-        (function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+        (function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
     </script>
     <style>
         :root { --neon: #00f3ff; --bg: #020308; --panel: rgba(0, 243, 255, 0.02); }
@@ -48,19 +48,21 @@
             <section class="panel">
                 <div class="w-title"><span>01</span> THEOREMS</div>
                 <p>La Verità Nominale a 600 decimali. Il Determinismo è ora un asset pubblico.</p>
-                <button onclick="window.location.href='https://www.amazon.it'">KINDLE LIVE</button>
+                <button onclick="window.location.href='https://www.amazon.it/dp/B0GTGBMTV1'">KINDLE LIVE</button>
             </section>
+            
             <!-- 02 AOS ASSET -->
             <section class="panel">
                 <div class="w-title"><span>02</span> AOS ASSET</div>
                 <p>Scambia SOL per la tua libertà tramite il protocollo Jupiter.</p>
                 <button onclick="window.open('https://jup.ag', '_blank')">BUY AOS COIN</button>
             </section>
+            
             <!-- 03 KERNEL JOIN -->
             <section class="panel">
                 <div class="w-title"><span>03</span> KERNEL JOIN <div class="status-on"></div></div>
-                <p>Sincronizza la tua identità per ricevere i vettori di correzione via chat.</p>
-                <button id="open-chat">AUTHENTICATE</button>
+                <p>Sincronizza la tua identità inviando Nome e Cognome via chat per la validazione.</p>
+                <button onclick="$crisp.push(['do', 'chat:open'])">AUTHENTICATE VIA CHAT</button>
             </section>
         </main>
         <footer>&copy; 2026 AOS | DETERMINISTIC TRUTH SYSTEM | ARCHITECT: ALAIN</footer>
@@ -72,8 +74,6 @@
             if (i < signature.length) { document.getElementById("typewriter").innerHTML += signature.charAt(i); i++; setTimeout(typeWriter, 35); }
         }
         window.onload = typeWriter;
-        // APERTURA CHAT
-        document.getElementById('open-chat').onclick = function() { $crisp.push(['do', 'chat:open']); };
     </script>
 </body>
 </html>
