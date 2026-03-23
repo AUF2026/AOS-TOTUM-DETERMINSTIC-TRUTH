@@ -1,10 +1,6 @@
 # AOS-TOTUM-DETERMINISTIC-TRUTH 🌀
 ### Master Architect: Alain | Deterministic Computing Kernel v1.0
 
-![License: Proprietary](https://img.shields.io)
-![Status: Live](https://img.shields.io)
-![Precision: 600 decimals](https://img.shields.io)
-
 ---
 
 ## 🏛️ IL MANIFESTO
