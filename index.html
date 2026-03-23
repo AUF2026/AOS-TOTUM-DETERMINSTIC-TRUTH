@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AOS | Totum Deterministic Truth</title>
-    <!-- SCRIPT CRISP INTEGRATO O(1) -->
+    <!-- SCRIPT CRISP RIPRISTINATO O(1) -->
     <script type="text/javascript">
         window.$crisp=[];window.CRISP_WEBSITE_ID="d1a70b76-e109-4314-a8e4-c8c470711ec7";
-        (function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+        (function(){
+            d=document;s=d.createElement("script");
+            s.src="https://client.crisp.chat";
+            s.async=1;d.getElementsByTagName("head")[0].appendChild(s);
+        })();
     </script>
     <style>
         :root { --neon: #00f3ff; --bg: #020308; --panel: rgba(0, 243, 255, 0.02); }
@@ -71,7 +75,11 @@
         const signature = "SIGILLO BLOCKCHAIN: 5wMmf3Q5mbiSVD2npjV1pfESQxhYush1bFuwbycSVD2npjV1pfESQxhYush1bFuwbycS...";
         let i = 0;
         function typeWriter() {
-            if (i < signature.length) { document.getElementById("typewriter").innerHTML += signature.charAt(i); i++; setTimeout(typeWriter, 35); }
+            if (i < signature.length) { 
+                document.getElementById("typewriter").innerHTML += signature.charAt(i); 
+                i++; 
+                setTimeout(typeWriter, 35); 
+            }
         }
         window.onload = typeWriter;
     </script>
