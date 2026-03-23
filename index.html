@@ -78,7 +78,7 @@
             </div>
             <div class="ticker-item">
                 <span class="label">MARKET INEFFICIENCY:</span>
-                <span id="inefficiency" class="value" style="color: #ff4141;">UNDERVALUED 99.99%</span>
+                <span id="inefficiency" class="value" style="color: #00ff00;">UNDERVALUED 99.99%</span>
             </div>
         </div>
 
@@ -115,16 +115,50 @@
 
     <script>
         const signature = "SIGILLO BLOCKCHAIN: 5wMmf3Q5mbiSVD2npjV1pfESQxhYush1bFuwbycSVD2npjV1pfESQxhYush1bFuwbycS...";
-        let i = 0;
+        let charIdx = 0;
+        const AOS_MINT = "BzkoNEKM1GdHu816sXjWmjHTZf5PPWCXqiNc3hzyodr3";
+
+        // 1. TYPEWRITER EFFECT
         function typeWriter() {
-            if (i < signature.length) {
-                document.getElementById("typewriter").innerHTML += signature.charAt(i);
-                i++;
+            if (charIdx < signature.length) {
+                document.getElementById("typewriter").innerHTML += signature.charAt(charIdx);
+                charIdx++;
                 setTimeout(typeWriter, 35);
             }
         }
+
+        // 2. DYNAMIC MARKET DATA UPDATE
+        async function updateMarketData() {
+            const nominalPriceEur = 1.20;
+
+            try {
+                const response = await fetch(`https://api.jup.ag{AOS_MINT}`);
+                const result = await response.json();
+
+                if (result.data && result.data[AOS_MINT]) {
+                    const marketPriceUsd = parseFloat(result.data[AOS_MINT].price);
+                    const eurUsdExchange = 0.92;
+                    const marketPriceEur = marketPriceUsd * eurUsdExchange;
+
+                    const underValuedPercent = ((nominalPriceEur - marketPriceEur) / nominalPriceEur) * 100;
+
+                    document.getElementById('nominal-value').innerHTML = "€ " + nominalPriceEur.toFixed(2);
+                    document.getElementById('inefficiency').innerHTML = "UNDERVALUED " + underValuedPercent.toFixed(4) + "%";
+                    document.getElementById('inefficiency').style.color = "#00ff00";
+                } else {
+                    document.getElementById('inefficiency').innerHTML = "MARKET BLIND / NO POOL";
+                    document.getElementById('inefficiency').style.color = "#ff4141";
+                }
+            } catch (e) {
+                document.getElementById('inefficiency').innerHTML = "SYNC ERROR / OFFLINE";
+                document.getElementById('inefficiency').style.color = "#ff4141";
+            }
+        }
+
         window.onload = function() {
             typeWriter();
+            updateMarketData();
+            setInterval(updateMarketData, 60000);
         };
     </script>
 </body>
