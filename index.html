@@ -4,45 +4,89 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AOS | Totum Deterministic Truth</title>
+
     <!-- SCRIPT CRISP INTEGRATO O(1) -->
     <script type="text/javascript">
         window.$crisp=[];window.CRISP_WEBSITE_ID="d1a70b76-e109-4314-a8e4-c8c470711ec7";
-        (function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+        (function(){
+            d=document;
+            s=d.createElement("script");
+            s.src="https://client.crisp.chat/l.js";
+            s.async=1;
+            d.getElementsByTagName("head")[0].appendChild(s);
+        })();
     </script>
+
     <style>
         :root { --neon: #00f3ff; --bg: #020308; --panel: rgba(0, 243, 255, 0.02); }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', monospace; }
+
         body { 
             background: var(--bg); color: #fff; overflow-x: hidden;
-            background-image: linear-gradient(rgba(0,243,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,243,255,0.05) 1px, transparent 1px);
+            background-image: linear-gradient(rgba(0,243,255,0.05) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(0,243,255,0.05) 1px, transparent 1px);
             background-size: 30px 30px;
         }
+
         body::before {
             content: " "; display: block; position: fixed; top: 0; left: 0; bottom: 0; right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
             z-index: 100; background-size: 100% 2px, 3px 100%; pointer-events: none;
         }
+
         .master-container { display: flex; flex-direction: column; min-height: 100vh; padding: 40px 20px; max-width: 1300px; margin: auto; }
+
+        /* TICKER NOMINALE DINAMICO */
+        .ticker-wrap { 
+            display: flex; justify-content: space-between; flex-wrap: wrap;
+            background: rgba(0, 243, 255, 0.05); border: 1px solid var(--neon); 
+            padding: 12px 20px; margin-bottom: 40px; font-size: 0.85rem;
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
+        }
+        .ticker-item .label { color: var(--neon); margin-right: 10px; font-weight: bold; text-transform: uppercase; }
+        .ticker-item .value { letter-spacing: 2px; font-weight: bold; }
+
         header { border-left: 5px solid var(--neon); padding-left: 25px; margin-bottom: 60px; }
         h1 { font-size: clamp(1.5rem, 5vw, 3rem); letter-spacing: 8px; text-transform: uppercase; text-shadow: 0 0 15px var(--neon); }
+
         .sig-box { color: var(--neon); font-size: 0.85rem; margin-top: 15px; background: rgba(0,0,0,0.5); padding: 10px; border: 1px solid #111; word-break: break-all; min-height: 45px; }
+
         main { display: flex; flex-wrap: wrap; gap: 30px; }
+
         .panel { background: var(--panel); border: 1px solid rgba(0, 243, 255, 0.15); padding: 30px; flex: 1 1 300px; display: flex; flex-direction: column; transition: 0.4s; backdrop-filter: blur(5px); }
         .panel:hover { border-color: var(--neon); transform: translateY(-5px); box-shadow: 0 0 25px rgba(0, 243, 255, 0.1); }
         .w-title { color: var(--neon); font-size: 1.2rem; margin-bottom: 25px; font-weight: bold; border-bottom: 2px solid #1a1a1a; padding-bottom: 10px; display: flex; align-items: center; justify-content: space-between; }
+
         input, button { width: 100%; padding: 15px; margin-top: 20px; background: transparent; border: 1px solid var(--neon); color: white; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: 0.2s; outline: none; }
         input { background: rgba(0,0,0,0.3); border-color: #333; cursor: text; }
         button:hover { background: var(--neon); color: #000; box-shadow: 0 0 25px var(--neon); }
+
         .status-on { width: 10px; height: 10px; background: #00ff00; border-radius: 50%; box-shadow: 0 0 10px #00ff00; }
+
         footer { margin-top: auto; padding-top: 50px; text-align: center; color: #444; font-size: 0.8rem; letter-spacing: 2px; }
     </style>
 </head>
 <body>
     <div class="master-container">
+
+        <!-- TICKER NOMINALE REAL-TIME -->
+        <div class="ticker-wrap">
+            <div class="ticker-item">
+                <span class="label">AOS NOMINAL VALUE:</span>
+                <span id="nominal-value" class="value">€ 1.20</span>
+            </div>
+            <div class="ticker-item">
+                <span class="label">MARKET INEFFICIENCY:</span>
+                <span id="inefficiency" class="value" style="color: #ff4141;">UNDERVALUED 99.99%</span>
+            </div>
+        </div>
+
         <header>
             <h1>AOS MASTER KERNEL</h1>
             <div class="sig-box" id="typewriter"></div>
         </header>
+
         <main>
             <!-- 01 THEOREMS -->
             <section class="panel">
@@ -65,19 +109,23 @@
                 <button onclick="$crisp.push(['do', 'chat:open'])">AUTHENTICATE VIA CHAT</button>
             </section>
         </main>
+
         <footer>&copy; 2026 AOS | DETERMINISTIC TRUTH SYSTEM | ARCHITECT: ALAIN</footer>
     </div>
+
     <script>
         const signature = "SIGILLO BLOCKCHAIN: 5wMmf3Q5mbiSVD2npjV1pfESQxhYush1bFuwbycSVD2npjV1pfESQxhYush1bFuwbycS...";
         let i = 0;
         function typeWriter() {
-            if (i < signature.length) { 
-                document.getElementById("typewriter").innerHTML += signature.charAt(i); 
-                i++; 
-                setTimeout(typeWriter, 35); 
+            if (i < signature.length) {
+                document.getElementById("typewriter").innerHTML += signature.charAt(i);
+                i++;
+                setTimeout(typeWriter, 35);
             }
         }
-        window.onload = typeWriter;
+        window.onload = function() {
+            typeWriter();
+        };
     </script>
 </body>
 </html>
