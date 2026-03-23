@@ -44,28 +44,32 @@
             <div class="sig-box" id="typewriter"></div>
         </header>
         <main>
+            <!-- 01 THEOREMS -->
             <section class="panel">
                 <div class="w-title"><span>01</span> THEOREMS</div>
                 <p>La Verità Nominale a 600 decimali. Il Determinismo è ora un asset pubblico.</p>
                 <button onclick="window.location.href='https://www.amazon.it/dp/B0GTGBMTV1'">KINDLE LIVE</button>
             </section>
+            
+            <!-- 02 AOS ASSET -->
             <section class="panel">
                 <div class="w-title"><span>02</span> AOS ASSET</div>
-                <p>Scambia SOL per la tua libertà di calcolo tramite il protocollo Jupiter.</p>
+                <p>Scambia SOL per la tua libertà tramite il protocollo Jupiter.</p>
                 <button onclick="window.open('https://jup.ag', '_blank')">BUY AOS COIN</button>
             </section>
+            
+            <!-- 03 KERNEL JOIN -->
             <section class="panel">
                 <div class="w-title"><span>03</span> KERNEL JOIN</div>
-                <p>Sincronizza la tua identità per ricevere i vettori di correzione.</p>
-                <form onsubmit="event.preventDefault(); alert('Identità Acquisita. In attesa di validazione...');">
-                    <input type="email" placeholder="Email Address" required>
-                    <button type="submit">Authenticate</button>
-                </form>
+                <p>Sincronizza la tua identità inviando Nome e Cognome via chat per la validazione.</p>
+                <button onclick="$crisp.push(['do', 'chat:open'])">AUTHENTICATE VIA CHAT</button>
             </section>
+            
+            <!-- 04 CHAT NODE -->
             <section class="panel">
                 <div class="w-title"><span>04</span> CHAT NODE <div class="status-on"></div></div>
                 <p>Canale diretto con il Master Architect. Risposta garantita dal Determinismo.</p>
-                <button id="open-chat">START LINK</button>
+                <button onclick="$crisp.push(['do', 'chat:open'])">START LINK</button>
             </section>
         </main>
         <footer>&copy; 2026 AOS | DETERMINISTIC TRUTH SYSTEM | ARCHITECT: ALAIN</footer>
@@ -77,8 +81,6 @@
             if (i < signature.length) { document.getElementById("typewriter").innerHTML += signature.charAt(i); i++; setTimeout(typeWriter, 35); }
         }
         window.onload = typeWriter;
-        // ATTIVAZIONE CRISP O(1)
-        document.getElementById('open-chat').onclick = function() { $crisp.push(['do', 'chat:open']); };
     </script>
 </body>
 </html>
