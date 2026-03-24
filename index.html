@@ -86,7 +86,7 @@
             <section class="panel">
                 <div class="w-title"><span>03</span> KERNEL JOIN <div class="status-on"></div></div>
                 <p>Sincronizza la tua identità inviando Nome e Cognome via chat per la validazione.</p>
-                <button onclick="window.$crisp.push(['do', 'chat:open'])">AUTHENTICATE VIA CHAT</button>
+                <button onclick="openAOSChat()">AUTHENTICATE VIA CHAT</button>
             </section>
         </main>
         <footer>&copy; 2026 AOS | DETERMINISTIC TRUTH SYSTEM | ARCHITECT: ALAIN</footer>
@@ -102,6 +102,15 @@
                 document.getElementById("typewriter").innerHTML += signature.charAt(charIdx);
                 charIdx++;
                 setTimeout(typeWriter, 35);
+            }
+        }
+
+        // FUNZIONE CHAT BLINDATA
+        function openAOSChat() {
+            if (window.$crisp && window.$crisp.push) {
+                window.$crisp.push(['do', 'chat:open']);
+            } else {
+                alert("Sincronizzazione chat in corso... Riprova tra 2 secondi.");
             }
         }
 
@@ -121,7 +130,6 @@
                     ineffElement.innerHTML = "UNDERVALUED " + underValuedPercent.toFixed(2) + "%";
                 } else { throw new Error(); }
             } catch (e) {
-                // FALLBACK DETERMINISTICO VERDE
                 const simulatedMarketPrice = 0.00014258 + (Math.random() * 0.00001); 
                 const theoreticalIneff = ((nominalPriceEur - simulatedMarketPrice) / nominalPriceEur) * 100;
                 priceElement.innerHTML = "€ " + nominalPriceEur.toFixed(2);
