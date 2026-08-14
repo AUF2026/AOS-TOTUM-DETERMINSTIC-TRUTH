@@ -1,4 +1,4 @@
-## 🏛️ IL MANIFESTO SCIENTIFICO
+## 🏛️ MANIFESTO SCIENTIFICO
 I modelli stocastici e probabilistici convenzionali rappresentano un limite intrinseco imposto dalle approssimazioni numeriche dello standard hardware IEEE 754 a 64 bit. Il framework algebrico AUF2026 introduce la scomposizione esatta sul reticolo relazionale discreto, eliminando alla radice l'errore di arrotondamento e il bit-drift attraverso un contesto d'esecuzione fixed-point puro (Decimal) isolato.
 L'infrastruttura computazionale dimostra che la funzione d'onda quantistica non è un'entità probabilistica intrinseca, ma una misura geometrica derivabile in modo deterministico sul Toro di Clifford. Il Kernel AOS144 opera in tempo costante O(1), assicurando la stabilità e la riproducibilità dei punti fissi ad errore macchina zero (ε₆₆₀).
 ------------------------------
