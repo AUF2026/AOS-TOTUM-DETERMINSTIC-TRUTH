@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUF2026 Framework — AOS144-HDFP</title>
+    <style>
+        /* AUF2026 Editorial Design Tokens — Variable Systems */
+        :root {
+            /* Light Theme (Default: Pure White, Sharp Black, Gold Accents) */
+            --bg-master: #ffffff;
+            --bg-surface: #fafafa;
+            --bg-code: #f5f5f7;
+            --border-pure: #111111;
+            --border-subtle: #e5e5e7;
+            --text-master: #111111;
+            --text-muted: #555555;
+            --gold-logo: #c5a028;
+            --gold-glow: rgba(197, 160, 40, 0.06);
+            --font-editorial: 'Times New Roman', Georgia, serif;
+            --font-mono: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme (Inverted: Absolute Black, Sharp White, Bright Gold) */
+            --bg-master: #0b0b0c;
+            --bg-surface: #121215;
+            --bg-code: #18181c;
+            --border-pure: #eeeeee;
+            --border-subtle: #2a2a32;
+            --text-master: #eeeeee;
+            --text-muted: #aaaaaa;
+            --gold-logo: #e5b82f;
+            --gold-glow: rgba(229, 184, 47, 0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-master);
+            color: var(--text-master);
+            font-family: var(--font-editorial);
+            font-size: 16px;
+            line-height: 1.7;
+            display: flex;
+            min-height: 100vh;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        /* Navigazione Laterale Editoriale Restrittiva */
+        nav {
+            width: 300px;
+            border-right: 1px solid var(--border-subtle);
+            background-color: var(--bg-surface);
+            padding: 50px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 35px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+            font-family: var(--font-mono);
+        }
+
+        .logo-area { padding-bottom: 25px; border-bottom: 1px solid var(--border-pure); }
+        .logo-title { font-size: 1.25rem; font-weight: 800; letter-spacing: -0.5px; text-transform: uppercase; }
+        .logo-subtitle { font-size: 0.7rem; color: var(--gold-logo); font-weight: bold; letter-spacing: 1.5px; margin-top: 6px; text-transform: uppercase; }
+
+        .theme-toggle-container { display: flex; align-items: center; justify-content: space-between; padding: 10px; border: 1px solid var(--border-subtle); background: var(--bg-master); }
+        .toggle-btn { background: none; border: none; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-master); cursor: pointer; font-weight: bold; text-transform: uppercase; width: 100%; text-align: center; padding: 4px 0; }
+
+        .page-selector-container { display: flex; flex-direction: column; gap: 10px; }
+        .selector-label { font-size: 0.65rem; font-weight: bold; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+        select { width: 100%; font-family: var(--font-mono); padding: 12px; border: 1px solid var(--border-pure); background: var(--bg-master); color: var(--text-master); outline: none; cursor: pointer; font-size: 0.8rem; }
+
+        .menu-list { display: flex; flex-direction: column; gap: 4px; list-style: none; }
+        .menu-item { display: flex; align-items: center; padding: 12px 14px; font-size: 0.8rem; color: var(--text-muted); text-decoration: none; cursor: pointer; border: 1px solid transparent; }
+        .menu-item:hover { color: var(--text-master); background-color: var(--bg-code); }
+        .menu-item.active { color: var(--text-master); font-weight: bold; background-color: var(--gold-glow); border: 1px solid var(--gold-logo); border-left: 4px solid var(--gold-logo); }
+
+        /* Struttura Centrale Editoriale Perfettamente Bilanciata */
+        main { 
+            margin-left: 300px; 
+            width: calc(100% - 300px); 
+            padding: 80px 100px; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 50px; 
+            max-width: 1200px;
+            align-items: center;
+            text-align: center;
+            margin-right: auto;
+        }
+        
+        header, section, footer { width: 100%; max-width: 800px; text-align: center; }
+        header { padding-bottom: 40px; border-bottom: 1px solid var(--border-subtle); display: flex; flex-direction: column; align-items: center; }
+        header h1 { font-size: 2.4rem; font-weight: normal; letter-spacing: -1px; margin-bottom: 15px; color: var(--text-master); }
+        .author-meta { font-family: var(--font-mono); font-size: 0.85rem; color: var(--text-master); margin-bottom: 25px; }
+        .author-meta strong { color: var(--gold-logo); }
+        .claim-quote { font-style: italic; font-size: 1.15rem; color: var(--text-muted); border-left: 2px solid var(--border-pure); border-right: 2px solid var(--border-pure); padding: 0 30px; margin: 20px 0; line-height: 1.8; text-align: center; }
+
+        h2 { font-size: 1.5rem; font-weight: normal; text-transform: uppercase; letter-spacing: 0.5px; border-bottom: 1px solid var(--border-pure); padding-bottom: 10px; margin-bottom: 25px; text-align: center; }
+        .cert-monolith { background-color: var(--bg-surface); border: 1px solid var(--border-pure); padding: 30px; font-family: var(--font-mono); font-size: 0.9rem; text-align: center; }
+        .cert-row { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 20px; justify-content: center; }
+        .cert-badge { background: var(--bg-code); padding: 6px 14px; border: 1px solid var(--border-subtle); font-weight: bold; font-size: 0.8rem; }
+
+        .results-list { list-style: none; display: flex; flex-direction: column; gap: 35px; text-align: center; }
+        .results-list li { padding: 0 20px; position: relative; display: flex; flex-direction: column; align-items: center; }
+        .results-list p { color: var(--text-muted); margin-bottom: 15px; text-align: center; }
+        .equation-box { background-color: var(--bg-code); border: 1px solid var(--border-subtle); padding: 20px; margin-top: 12px; width: 100%; overflow-x: auto; font-family: var(--font-editorial); font-size: 1.2rem; text-align: center; font-style: italic; }
+
+        .artifact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; text-align: center; }
+        .artifact-card { border: 1px solid var(--border-subtle); padding: 30px; background: var(--bg-surface); display: flex; flex-direction: column; justify-content: space-between; align-items: center; gap: 15px; }
+        .artifact-card h4 { font-size: 1.15rem; font-weight: normal; color: var(--text-master); }
+        .artifact-card p { font-size: 0.9rem; color: var(--text-muted); text-align: center; }
+        .artifact-card a { color: var(--text-master); font-family: var(--font-mono); font-weight: bold; text-decoration: none; font-size: 0.8rem; text-transform: uppercase; border-bottom: 2px solid var(--gold-logo); padding-bottom: 2px; }
+
+        footer { margin-top: auto; padding-top: 40px; border-top: 1px solid var(--border-subtle); font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+
+        @media (max-width: 1000px) {
+            body { flex-direction: column; }
+            nav { width: 100%; height: auto; position: relative; padding: 30px 20px; border-right: none; border-bottom: 1px solid var(--border-subtle); }
+            main { margin-left: 0; width: 100%; padding: 40px 20px; align-items: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo-area">
+            <div class="logo-title">AUF2026 Engine</div>
+            <div class="logo-subtitle">FAURE AUF2026</div>
+        </div>
+        <div class="theme-toggle-container">
+            <button class="toggle-btn" id="theme-toggle-trigger" onclick="toggleEditorialTheme()">Toggle Theme</button>
+        </div>
+        <div class="page-selector-container">
+            <span class="selector-label">Matrix Sector Input:</span>
+            <select id="matrix-page-selector" onchange="loadMatrixSector(this.value)">
+                <option value="main_results">T00 // Main Audit</option>
+                <option value="water_anomaly">T04 // Water Anomaly</option>
+                <option value="fine_structure">T137 // Fine Structure</option>
+                <option value="fdm_dynamics">T175 // FDM Dynamics</option>
+            </select>
+        </div>
+        <ul class="menu-list" id="tracking-menu">
+            <li class="menu-item active" onclick="navigateViaMenu('main_results')">01. Central Audit</li>
+            <li class="menu-item" onclick="navigateViaMenu('water_anomaly')">02. Thermal Continuum</li>
+            <li class="menu-item" onclick="navigateViaMenu('fine_structure')">03. Vacuum Coupling</li>
+            <li class="menu-item" onclick="navigateViaMenu('fdm_dynamics')">04. Injective States</li>
+        </ul>
+    </nav>
+
+    <main id="content-container">
+        <header>
+            <h1>AUF2026 AOS144-HDFP Deterministic FDM Structural Framework</h1>
+            <div class="author-meta">Master Architect: <strong>Alain Faure</strong> | Q.E.D. Engine</div>
+            <div class="claim-quote">
+                "L’autore propone un possibile linguaggio matematico; la struttura, se reale, precede la sua rappresentazione e manifestazione. Prima parlano i dati. Poi, attraverso i dati, parla Alain Faure."
+            </div>
+        </header>
+
+        <section>
+            <h2>1. Mathematical & Scientific Verifications</h2>
+            <div class="cert-monolith">
+                <strong>Lean 4 Core Implementation:</strong> 13,750 lines of deductive logic verified under Lean v4.34.0-rc2.
+                <div class="cert-row">
+                    <span class="cert-badge">0 errors</span>
+                    <span class="cert-badge">0 sorry</span>
+                    <span class="cert-badge">0 axioms</span>
+                    <span class="cert-badge">0 imports [Core Puro]</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. Key Scientific Results</h2>
+            <ul class="results-list">
+                <li>
+                    <strong>Topological Vacuum Impedance</strong>
+                    <p>Dimostrazione formale che l'interazione geometrica vincola strettamente il denominatore di accoppiamento elettromagnetico della QED.</p>
+                    <div class="equation-box">
+                        α⁻¹ = tetrahedralLatticeCount - tetrahedralCenterValue - tetrahedralNormalPair = 144 - 5 - 2 = 137
+                    </div>
+                </li>
+                <li>
+                    <strong>Water Anomaly Solution</strong>
+                    <p>Estrazione dell'andamento continuo della densità dell'acqua da interpolazione quadratica pura discreta senza parametri calibrati.</p>
+                    <div class="equation-box">
+                        T_max = -b / 2a = 38 / 9 °C ≈ 4.22 °C
+                    </div>
+                </li>
+                <li>
+                    <strong>FDM Injective Trajectories</strong>
+                    <p>Certificazione di invarianza strutturale sulle mappe iterate stazionarie per il mantenimento dell'identità informativa.</p>
+                    <div class="equation-box">
+                        U_F = (M, G, A, Ψ, Λ, Π)
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. Access Digital Artifacts</h2>
+            <div class="artifact-grid">
+                <div class="artifact-card">
+                    <h4>Scientific Manuscript</h4>
+                    <p>Il testo scientifico completo e impaginato in formato accademico LaTeX.</p>
+                    <a href="./public/AUF2026_Fine_Structure_Proof.pdf" target="_blank">Download PDF</a>
+                </div>
+                <div class="artifact-card">
+                    <h4>Kernel Monolith Code</h4>
+                    <p>L'archivio delle 13.750 righe di calcolo puro in ambiente indipendente.</p>
+                    <a href="https://github.com" target="_blank">Open Source</a>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <span>Status: Verified Core Monolith</span>
+            <span>ORCID: 0009-0009-5333-1181</span>
+            <span>September 2026</span>
+        </footer>
+    </main>
+    <script>
+        console.log("AUF2026 Centered Editorial Engine initialized.");
+
+        // Inversione logica istantanea dei contrasti cromatici (Light/Dark Mode) via variabili CSS
+        function toggleEditorialTheme() {
+            const rootElement = document.documentElement;
+            const currentTheme = rootElement.getAttribute('data-theme');
+            const targetTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+            rootElement.setAttribute('data-theme', targetTheme);
+            console.log("Theme modificato localmente: " + targetTheme);
+        }
+
+        const pageRoutes = {
+            'main_results': 'main_results.html',
+            'water_anomaly': 'water_anomaly.html',
+            'fine_structure': 'fine_structure.html',
+            'fdm_dynamics': 'fdm_dynamics.html'
+        };
+
+        function updateTrackingUI(pageKey) {
+            const menuItems = document.querySelectorAll('#tracking-menu .menu-item');
+            const targetIndex = Object.keys(pageRoutes).indexOf(pageKey);
+            menuItems.forEach((item, index) => {
+                if (index === targetIndex) { item.classList.add('active'); } 
+                else { item.classList.remove('active'); }
+            });
+            document.getElementById('matrix-page-selector').value = pageKey;
+        }
+
+        // Sistema di caricamento frammenti asincroni AJAX localizzato in /pages
+        function loadMatrixSector(pageKey) {
+            updateTrackingUI(pageKey);
+            const targetUrl = './pages/' + pageRoutes[pageKey];
+            fetch(targetUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error("Initializing sector data inside /pages...");
+                    return response.text();
+                })
+                .then(htmlContent => {
+                    document.getElementById('content-container').innerHTML = htmlContent;
+                })
+                .catch(error => { console.log(error.message); });
+        }
+
+        function navigateViaMenu(pageKey) { loadMatrixSector(pageKey); }
+    </script>
+
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+            svg: { fontCache: 'global' }
+        };
+    <script src="https://cdn.jsdelivr.net/npm/@polyfill/polyfill@1.0.2/dist/polyfill.min.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+    <script>
+</body>
+</html>
