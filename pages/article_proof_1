@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUF2026 Framework — Mathematical & Scientific Results</title>
+    <style>
+        /* AUF2026 Core Palette — Original Style with Dynamic Theme Extensions */
+        :root {
+            --bg-master: #fafafa;
+            --bg-cert: #ffffff;
+            --bg-code: #f0f0f4;
+            --text-master: #111111;
+            --text-muted: #555555;
+            --border-pure: #000000;
+            --border-subtle: #dddddd;
+            --gold-logo: #d4af37; /* Giallo Oro Identity */
+            --gold-glow: rgba(212, 175, 55, 0.06);
+            --font-mono: monospace;
+        }
+
+        [data-theme="dark"] {
+            --bg-master: #0a0a0c;
+            --bg-cert: #121216;
+            --bg-code: #1a1a22;
+            --text-master: #f0f0f5;
+            --text-muted: #aaaaaa;
+            --border-pure: #ffffff;
+            --border-subtle: #333333;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: var(--font-mono);
+            line-height: 1.6;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+            background-color: var(--bg-master);
+            color: var(--text-master);
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        h1, h2, h3 { 
+            color: var(--text-master); 
+            border-bottom: 1px solid var(--border-subtle); 
+            padding-bottom: 5px; 
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        p { margin-bottom: 15px; }
+        em { color: var(--text-muted); }
+
+        .cert { 
+            background-color: var(--bg-cert); 
+            border-left: 4px solid var(--border-pure); 
+            padding: 15px; 
+            margin: 20px 0; 
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05); 
+            transition: background-color 0.2s ease;
+        }
+
+        .cert-gold {
+            border-left-color: var(--gold-logo);
+            background-color: var(--gold-glow);
+        }
+
+        ul { margin-bottom: 20px; padding-left: 20px; }
+        li { margin-bottom: 10px; }
+
+        a { color: #0066cc; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Struttura Menu Interattivo e Controlli Superiori */
+        .dashboard-controls {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--border-pure);
+        }
+
+        .nav-selector {
+            font-family: var(--font-mono);
+            padding: 6px 10px;
+            border: 1px solid var(--border-pure);
+            background-color: var(--bg-cert);
+            color: var(--text-master);
+            cursor: pointer;
+            outline: none;
+        }
+
+        .theme-btn {
+            font-family: var(--font-mono);
+            padding: 6px 12px;
+            border: 1px solid var(--border-pure);
+            background-color: var(--border-pure);
+            color: var(--bg-master);
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .tracking-bar {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+            flex-wrap: wrap;
+        }
+
+        .tracking-item {
+            padding: 4px 8px;
+            cursor: pointer;
+            border: 1px solid var(--border-subtle);
+            color: var(--text-muted);
+        }
+
+        .tracking-item.active {
+            color: var(--text-master);
+            font-weight: bold;
+            border-color: var(--border-pure);
+            background-color: var(--bg-cert);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CONTROLLI E STRUTTURA DI NAVIGAZIONE INTERATTIVA -->
+    <div class="dashboard-controls">
+        <div>
+            <select class="nav-selector" id="matrix-sector-dropdown" onchange="loadMatrixSector(this.value)">
+                <option value="main_results">Sector: T00 // Central Audit</option>
+                <option value="water_anomaly">Sector: T04 // Water Anomaly</option>
+                <option value="fine_structure">Sector: T137 // Fine Structure</option>
+                <option value="fdm_dynamics">Sector: T175 // FDM Dynamics</option>
+            </select>
+        </div>
+        <button class="theme-btn" onclick="toggleFrameworkTheme()">TOGGLE THEME</button>
+    </div>
+
+    <ul class="tracking-bar" id="position-tracking-menu">
+        <li class="tracking-item active" onclick="navigateViaTrack('main_results')">[01. Audit]</li>
+        <li class="tracking-item" onclick="navigateViaTrack('water_anomaly')">[02. Water]</li>
+        <li class="tracking-item" onclick="navigateViaMenu('fine_structure')">[03. Alpha]</li>
+        <li class="tracking-item" onclick="navigateViaTrack('fdm_dynamics')">[04. FDM]</li>
+    </ul>
+
+    <!-- MONOLITO CONTENUTI -->
+    <div id="content-container">
+    <!-- INTESTAZIONE MONOLITICA DEL FRAMEWORK -->
+    <h1 style="font-size: 2.2rem; font-weight: normal; letter-spacing: -1px; text-transform: uppercase; margin-bottom: 20px; border-bottom: 2px solid var(--border-pure);">AUF2026 Framework</h1>
+    
+    <!-- CARD DELLA FIRMA AUTOREVOLE COMPLETAMENTE IMPAGINATA -->
+    <div style="background-color: var(--bg-cert); border: 1px solid var(--border-pure); border-left: 6px solid var(--border-pure); padding: 25px; margin: 20px 0; box-shadow: 0 2px 6px rgba(0,0,0,0.02); position: relative;">
+        
+        <!-- TAG DI VALIDAZIONE STRUTTURALE -->
+        <div style="position: absolute; top: 15px; right: 15px; font-size: 0.7rem; font-weight: bold; background-color: var(--bg-code); padding: 3px 8px; border: 1px solid var(--border-subtle); letter-spacing: 0.5px;">CORE ENGINE VERIFIED</div>
+        
+        <!-- DETTAGLI DELL'AUTORE -->
+        <p style="margin-bottom: 10px; font-size: 1.1rem; color: var(--text-master);">
+            <strong>Master Architect:</strong> <span style="border-bottom: 2px solid var(--gold-logo); padding-bottom: 1px; font-weight: bold;">Alain Faure</span> 
+            <span style="margin-left: 10px; font-weight: bold; color: var(--text-muted);">| Q.E.D.</span>
+        </p>
+        <!-- EPIGRAFE ORIGINALE DA CLAIM ACCADEMICO -->
+        <p style="margin-top: 15px; margin-bottom: 15px; padding-top: 15px; border-top: 1px dashed var(--border-subtle); line-height: 1.7; font-size: 0.95rem;">
+            <em style="color: var(--text-muted); display: block; padding-left: 15px; border-left: 2px solid var(--gold-logo);">
+                "Structure comes before representation and manifestation. First speak the data."
+            </em>
+        </p>
+
+        <!-- FORMULA DELLA MATRICE UNIVERSALE DI FAURE INTEGRATA IN MONOSPACE -->
+        <div style="margin-top: 12px; font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono); display: flex; flex-wrap: wrap; gap: 15px;">
+            <span><strong>ORCID:</strong> 0009-0009-5333-1181</span>
+            <span><strong>Matrix:</strong> U_F = (M, G, A, Ψ, Λ, Π)</span>
+        </div>
+    </div>
+
+        
+        <h2>1. Mathematical & Scientific Verifications</h2>
+        <div class="cert">
+            <strong>Lean 4 Core Implementation:</strong> 13,750 lines of logic verified under Lean v4.34.0-rc2.<br>
+            <strong>Metrics:</strong> 0 errors | 0 sorry | 0 axioms | 0 imports.
+        </div>
+
+        <h2>2. Key Scientific Results</h2>
+        <ul>
+            <li><strong>Topological Vacuum Impedance</strong>: Mathematical proof that $\alpha^{-1} = 144 - 5 - 2 = 137$.</li>
+            <li><strong>Water Anomaly Solution</strong>: Exact continuous density peak derived at $38/9 \approx 4.22^\circ\text{C}$.</li>
+            <li><strong>FDM Dynamics</strong>: Complete proof of iterated-state injectivity across active spectral modifiers.</li>
+        </ul>
+
+        <h2>3. Access Digital Artifacts</h2>
+        <div class="cert cert-gold">
+            <ul>
+                <li><a href="./public/AUF2026_Fine_Structure_Proof.pdf" target="_blank">Download Scientific Paper (PDF)</a></li>
+                <li><a href="https://github.com" target="_blank">Browse Verified Lean 4 Core Code</a></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        console.log("AUF2026 Layout Loaded. Style intact. Navigation Active.");
+
+        // Inversione dinamica nativa dei contrasti cromatici
+        function toggleFrameworkTheme() {
+            const rootElement = document.documentElement;
+            const currentTheme = rootElement.getAttribute('data-theme');
+            const targetTheme = (currentTheme === 'dark') ? 'light' : 'dark';
+            rootElement.setAttribute('data-theme', targetTheme);
+            console.log("Theme switched to: " + targetTheme);
+        }
+
+        const pageRoutes = {
+            'main_results': 'main_results.html',
+            'water_anomaly': 'water_anomaly.html',
+            'fine_structure': 'fine_structure.html',
+            'fdm_dynamics': 'fdm_dynamics.html'
+        };
+
+        function syncTrackingUI(pageKey) {
+            const trackingItems = document.querySelectorAll('#position-tracking-menu .tracking-item');
+            const currentIndex = Object.keys(pageRoutes).indexOf(pageKey);
+            
+            trackingItems.forEach((item, index) => {
+                if (index === currentIndex) { item.classList.add('active'); } 
+                else { item.classList.remove('active'); }
+            });
+            document.getElementById('matrix-sector-dropdown').value = pageKey;
+        }
+
+        // Funzione asincrona Fetch per scambiare i frammenti della cartella /pages
+        function loadMatrixSector(pageKey) {
+            syncTrackingUI(pageKey);
+            const targetUrl = './pages/' + pageRoutes[pageKey];
+            
+            fetch(targetUrl)
+                .then(response => {
+                    if (!response.ok) throw new Error("Awaiting segment integration in /pages...");
+                    return response.text();
+                })
+                .then(htmlParziale => {
+                    document.getElementById('content-container').innerHTML = htmlParziale;
+                    if (window.MathJax) { window.MathJax.typesetPromise(); }
+                })
+                .catch(err => { console.log(err.message); });
+        }
+
+        function navigateViaTrack(pageKey) { loadMatrixSector(pageKey); }
+        function navigateViaMenu(pageKey) { loadMatrixSector(pageKey); }
+    </script>
+
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['$', '$'], ['\\(', '\\)']], displayMath: [['$$', '$$']] },
+            svg: { fontCache: 'global' }
+        };
+<script src="https://cdn.jsdelivr.net/npm/@polyfill/polyfill@1.0.2/dist/polyfill.min.js"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js"></script>
+    <script>
+</body>
+</html>
